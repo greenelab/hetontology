@@ -1,3 +1,4 @@
 [submodule "OLS"]
 	path = OLS
 	url = git@github.com:EBISPOT/OLS.git
+	ignore = dirty
