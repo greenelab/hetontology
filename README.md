@@ -8,6 +8,8 @@ The available ontologies are listed in [`ontology-config`](ontology-config) and 
 + the [Human Disease Ontology](http://disease-ontology.org/)
 + the [Uberon](http://uberon.org) of anatomical structures
 
+Each ontology is configured according to its properties file (see  for example [`application-doid.properties`](ontology-config/application-doid.properties)). Currently, ontology annotations, such as Gene Ontology Annotations (term–gene associations) are not included.
+
 See [this discussion](https://github.com/EBISPOT/OLS/issues/104 "EBISPOT/OLS#104: Creating a Neo4j instance of an ontology") for additional information.
 
 ## Execution
