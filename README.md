@@ -15,3 +15,26 @@ See [this discussion](https://github.com/EBISPOT/OLS/issues/104 "EBISPOT/OLS#104
 ## Execution
 
 The import is performed by running `sh execute.sh`.
+
+## Running a local Hetonology Neo4j instance
+
+You can easily create a local Neo4j instance of the Hetontology database. Just run the following commands from the directory where you would like the database directory to exist. The Hetontology Neo4j Browser should then become available at http://localhost:7474.
+
+```sh
+# Remove database if exists. Then download the database into hetontology.db
+URL=https://github.com/greenelab/hetontology/blob/ols-neo4j-app/database/hetontology.db.tar.xz?raw=true
+DB_DIR=hetontology.db
+rm --recursive --force $DB_DIR
+mkdir $DB_DIR
+curl --location --silent $URL | tar --extract --xz --directory $DB_DIR
+
+# Launch Neo4j from Docker and use hetontology.db as the database
+# Neo4j will become available on http://localhost:7474
+docker pull neo4j:3.0.3
+docker run \
+  --publish=7474:7474 \
+  --volume=`pwd`/$DB_DIR:/data/databases/graph.db \
+  --env=NEO4J_AUTH=none \
+  --env=NEO4J_dbms_allowFormatMigration=true \
+  neo4j:3.0.3
+```
